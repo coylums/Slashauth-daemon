@@ -265,7 +265,7 @@ const requestListener = function (request, response) {
 };
 
 const httpserver = http.createServer(requestListener);
-httpserver.listen($PORT);
+httpserver.listen(process.env.PORT);
 
 async function areWeReady() {
   return new Promise(function (resolve, reject) {
