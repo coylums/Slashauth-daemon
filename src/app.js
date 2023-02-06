@@ -1,6 +1,6 @@
 import express from "express"
 import { handler } from "express-timeout-handler"
-import statusController from "./controllers/status.js"
+import healthzController from "./controllers/healthz.js"
 
 import routes from "./routes/index.js"
 
@@ -13,7 +13,7 @@ const requestTimeout = 10000
 const app = express()
 app.enable("trust proxy")
 
-app.get("/healthz", statusController)
+app.get("/healthz", healthzController)
 
 // app.use(addRequestLogging)
 

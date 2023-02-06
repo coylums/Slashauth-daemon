@@ -1,6 +1,6 @@
 import { Router } from "express"
 import slashTagAuth from "../middleware/slashtag-auth.js"
-import { getAuthenticatedSlashTag, updateProfile } from "../controllers/v1/index.js"
+import { getAuthenticatedSlashTag, updateProfile, getStatus } from "../controllers/v1/index.js"
 
 const router = Router()
 
@@ -12,6 +12,7 @@ router.use(logEverything)
 
 router.use(slashTagAuth)
 
+router.get("/status", getStatus)
 router.get("/slashtag", getAuthenticatedSlashTag)
 router.put("/profile", updateProfile)
 
