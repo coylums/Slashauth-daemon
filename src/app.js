@@ -1,6 +1,7 @@
 import express from "express"
 import { handler } from "express-timeout-handler"
 import healthzController from "./controllers/healthz.js"
+import addRequestLogging from "./utils/add-request-logging.js"
 
 import routes from "./routes/index.js"
 
@@ -15,7 +16,7 @@ app.enable("trust proxy")
 
 app.get("/healthz", healthzController)
 
-// app.use(addRequestLogging)
+app.use(addRequestLogging)
 
 app.use(
   handler({
