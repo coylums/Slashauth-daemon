@@ -4,9 +4,9 @@ import healthzController from "./controllers/healthz.js"
 
 import routes from "./routes/index.js"
 
-// const transformCelebrateError = require("./utils/transform-celebrate-error")
 import SlashAuthError from "./lib/error.js"
 import handleError from "./lib/handler-error.js"
+import transformCelebrateError from "./utils/transform-celebrate-error.js"
 
 const requestTimeout = 10000
 
@@ -34,7 +34,7 @@ app.use(routes)
 
 app.use((req, res, next) => next(SlashAuthError.notFound()))
 
-// app.use(transformCelebrateError)
+app.use(transformCelebrateError)
 app.use(handleError)
 
 export default app
