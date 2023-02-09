@@ -5,11 +5,12 @@ import addRequestLogging from "./utils/add-request-logging.js"
 
 import routes from "./routes/index.js"
 
-import SlashAuthError from "./lib/error.js"
-import handleError from "./lib/handler-error.js"
+import SlashAuthError from "./utils/error.js"
+import handleError from "./utils/handler-error.js"
 import transformCelebrateError from "./utils/transform-celebrate-error.js"
+import transformSlashtagError from "./utils/transform-slashtag-error.js"
 
-const requestTimeout = 10000
+const requestTimeout = 30000
 
 const app = express()
 app.enable("trust proxy")
@@ -36,6 +37,7 @@ app.use(routes)
 app.use((req, res, next) => next(SlashAuthError.notFound()))
 
 app.use(transformCelebrateError)
+app.use(transformSlashtagError)
 app.use(handleError)
 
 export default app

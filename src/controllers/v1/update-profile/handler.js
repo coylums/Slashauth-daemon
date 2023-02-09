@@ -1,9 +1,8 @@
 import { getContents, updateContents } from "../../../services/db.js"
-import b4a from "b4a"
 
 export default async (req, res) => {
   const updatedProfile = req.body
-  const { slashtag } = req.slashtags
+  const { slashTagService } = req
 
   const currentProfile = getContents("profile.txt")
   if (currentProfile == updatedProfile) {
@@ -12,9 +11,8 @@ export default async (req, res) => {
 
   updateContents("profile.txt", updatedProfile)
 
-  var publicDrive = slashtag.drivestore.get()
-  await publicDrive.ready()
-  await publicDrive.put("/profile.txt", b4a.from(JSON.stringify(updatedProfile)))
+  await slashTagService.isReady()
+  await slashTagService.updatePublicDrive(updatedProfile)
 
   res.set("Content-Type", "text/plain")
   res.send(updatedProfile)

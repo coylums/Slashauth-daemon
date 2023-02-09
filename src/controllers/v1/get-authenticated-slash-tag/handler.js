@@ -4,7 +4,9 @@ import fs from "fs"
 
 export default async (req, res) => {
   const { client_id: clientId } = req.query
-  const { profile: existingProfile, slashtag } = req.slashtags
+  const { slashTagService } = req
+
+  const existingProfile = await slashTagService.getPublicProfile("profile.txt")
 
   var name = JSON.parse(Buffer.from(existingProfile).toString())["name"]
   //clear old db entries
@@ -42,7 +44,7 @@ export default async (req, res) => {
     }
     if (!authenticated) {
       //if the user did not authenticate yet but they are in the db, pass them the slash-auth url so they can authenticate
-      var slashAuthUrl = SlashURL.format(slashtag.key, {
+      var slashAuthUrl = SlashURL.format(slashTagService.slashTag.key, {
         protocol: "slashauth",
         query: { q: clientId },
       })

@@ -5,7 +5,7 @@ import { getAuthenticatedSlashTag, updateProfile, getStatus } from "../controlle
 const router = Router()
 
 const logEverything = (req, res, next) => {
-  console.debug(`--> ${req.method} ${req.originalUrl} ${JSON.stringify(req.body)}`)
+  req.log.debug(`--> ${req.method} ${req.originalUrl} ${JSON.stringify(req.body)}`)
   next()
 }
 router.use(logEverything)

@@ -1,5 +1,5 @@
-import isCelebrateError from "celebrate"
-import SlashAuthError from "../lib/error.js"
+import { isCelebrateError } from "celebrate"
+import SlashAuthError from "../utils/error.js"
 
 export default (err, req, res, next) => {
   if (!isCelebrateError(err)) {
