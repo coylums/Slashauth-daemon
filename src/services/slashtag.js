@@ -92,6 +92,12 @@ class SlashTagService {
         }
         return { status: "error", message: "invalid token" }
       },
+      onmagiclink: () => {
+        return {
+          url: "http://fixthemoney.world",
+          validUntil: Number(new Date()) + 15 * 60 * 60,
+        }
+      },
     })
 
     // Listen on server's Slashtag key through DHT connections

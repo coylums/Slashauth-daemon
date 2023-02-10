@@ -57,6 +57,8 @@ export default middleware(async (req) => {
     await slashTagService.updatePublicDrive(profileToSet)
   }
 
+  await slashTagService.createServer()
+
   req.slashTagService = slashTagService
 
   /** END OF SLASHTAGS AUTH SETUP **/
