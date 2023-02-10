@@ -6,7 +6,7 @@ import b4a from "b4a"
 class SlashTagService {
   constructor(savedPrimaryKey) {
     this.sdk = new SDK({ storage: "./storage", primaryKey: b4a.from(savedPrimaryKey, "hex") })
-    this.slashTag = this.sdk.slashtag("coylums")
+    this.slashTag = this.sdk.slashtag(process.env.SLASHTAG)
   }
 
   validateToken(token, user) {
